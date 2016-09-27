@@ -8,6 +8,12 @@ nhaystack
 
 Improvements, optimizations and back-ports for Haystack (with Elastic biases).
 
+Build status
+============
+
+.. image:: https://travis-ci.org/noveogroup/nhaystack.svg?branch=master
+    target: https://travis-ci.org/noveogroup/nhaystack.svg
+
 Requirements
 ============
 
