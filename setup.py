@@ -25,7 +25,7 @@ setup(
     author_email='evgeny.sizikov@noveogroup.com',
     long_description=open('README.rst', 'r').read(),
     license='BSD',
-    url='http://noveogroup.com/',
+    url='https://github.com/noveogroup/nhaystack',
     packages=[
         'nhaystack',
         'nhaystack.backends',
