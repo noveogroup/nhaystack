@@ -13,6 +13,7 @@ dist/
 # Tox
 .tox/
 .eggs/
+.cache/
 
 # Editors / IDE
 

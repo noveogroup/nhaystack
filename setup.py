@@ -27,7 +27,8 @@ tests_requires = [
     'elasticstack==0.4.1',
     'whoosh>=2.5.0',
 
-    'pytest',
+    'pytest<2.9.0',
+    'pytest_django<3.0.0',
 ]
 
 setup(

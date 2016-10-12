@@ -19,14 +19,6 @@ DATABASES = {
     }
 }
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'nhaystack.backends.elasticsearch.ElasticsearchSearchEngine',
-        'URL': 'http://localhost:9200',
-        'INDEX_NAME': 'nhaystack'
-    },
-}
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -44,19 +36,21 @@ SECRET_KEY = 'ii4sjhh)!%m_7=$lqpc(w#dvl^v&&g&gf!y2go)7k25%0v699='
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
-#
-# TIME_ZONE = 'UTC'
-#
-# USE_I18N = False
-#
-# USE_L10N = False
-#
-# USE_TZ = False
+USE_I18N = False
 
 # Application definition
 
 INSTALLED_APPS = [
-    'haystack',
     'elasticstack',
+    'haystack',
+    'tests.music',
 ]
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'nhaystack.backends.elasticsearch.ElasticsearchSearchEngine',
+        'URL': 'http://localhost:9200',
+        'INDEX_NAME': 'nhaystack'
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'tests.search.RealtimeModelSignalProcessor'
