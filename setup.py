@@ -17,6 +17,20 @@ install_requires = [
     'Django>=1.6',
 ]
 
+setup_requires = [
+    'pytest-runner',
+]
+
+tests_requires = [
+    'django-haystack==2.4.1',
+    'elasticsearch>=1.0.0,<2.0.0',
+    'elasticstack==0.4.1',
+    'whoosh>=2.5.0',
+
+    'pytest<2.9.0',
+    'pytest_django<3.0.0',
+]
+
 setup(
     name=nhaystack.__name__,
     version=nhaystack.__version__,
@@ -25,7 +39,7 @@ setup(
     author_email='evgeny.sizikov@noveogroup.com',
     long_description=open('README.rst', 'r').read(),
     license='BSD',
-    url='http://noveogroup.com/',
+    url='https://github.com/noveogroup/nhaystack',
     packages=[
         'nhaystack',
         'nhaystack.backends',
@@ -46,6 +60,8 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Topic :: Utilities',
     ],
-    zip_safe=False,
+    zip_safe=True,
     install_requires=install_requires,
+    setup_requires=setup_requires,
+    tests_require=tests_requires,
 )

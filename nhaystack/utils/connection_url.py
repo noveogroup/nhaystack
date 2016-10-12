@@ -55,9 +55,9 @@ def parse(url, engine=None):
         _config['URL'] = url.netloc
         _config['INDEX_NAME'] = path or ''
     elif url.scheme == 'whoosh':
-        _config['PATH'] = path
+        _config['PATH'] = os.path.join(url.netloc, path)
     elif url.scheme == 'xapian':
-        _config['PATH'] = path
+        _config['PATH'] = os.path.join(url.netloc, path)
     elif url.scheme == 'solr':
         _config['URL'] = ''.join([url.netloc, path])
 

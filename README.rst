@@ -3,10 +3,16 @@
 nhaystack
 =========
 
-:Version: 0.0.1
+:Version: 0.0.2
 :Author: Noveo Group (http://noveogroup.com/)
 
 Improvements, optimizations and back-ports for Haystack (with Elastic biases).
+
+Build status
+============
+
+.. image:: https://travis-ci.org/noveogroup/nhaystack.svg?branch=master
+    target: https://travis-ci.org/noveogroup/nhaystack.svg
 
 Requirements
 ============

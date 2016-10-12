@@ -3,6 +3,14 @@
 History
 -------
 
+0.0.2 (2016-10-12)
+++++++++++++++++++
+* [core] Fixed signals.ModelSignalProcessorMixin to properly register signal
+  handlers.
+* [tests] Added an initial Django test project settings and a testing
+  application for further tests.
+* Updated tox and Travis-CI settings.
+
 0.0.1 (2016-09-27)
 ++++++++++++++++++
 
