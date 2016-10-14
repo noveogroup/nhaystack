@@ -3,10 +3,14 @@
 from __future__ import absolute_import
 
 from functools import partial
+from inspect import ismethod
 
 from django.db.models import signals as models_signals
+from django.utils import six
 
 from haystack.utils import get_model_ct
+
+METHOD_SELF = '__self__' if six.PY3 else 'im_self'
 
 
 class ModelSignalProcessorMixin(object):
@@ -38,6 +42,21 @@ class ModelSignalProcessorMixin(object):
             '_handle_related_delete': partial(self._handle_related_action, _handle_delete),
         })
         models_signals.class_prepared.connect(self._post_setup)
+
+    def teardown(self):
+        models_signals.class_prepared.disconnect(self._post_setup)
+        signals = (models_signals.post_save, models_signals.post_delete)
+
+        def is_method_of_self(receiver):
+            handler = receiver[1]()
+            return (ismethod(handler) and
+                    getattr(handler, METHOD_SELF, None) != self)
+
+        for signal in signals:
+            with signal.lock:
+                signal.receivers = [receiver for receiver in signal.receivers
+                                    if is_method_of_self(receiver)]
+                signal.sender_receivers_cache.clear()
 
     def _post_setup(self, sender, **kwargs):
         model_name = get_model_ct(sender)
