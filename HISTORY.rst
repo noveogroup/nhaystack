@@ -3,6 +3,16 @@
 History
 -------
 
+0.0.3 (2016-10-14)
+++++++++++++++++++
+* [core] Added signals.ModelSignalProcessorMixin.teardown() to be able to
+  disconnect signal handlers of the.signal processor instance that have
+  been connected by .setup() during the Haystack initialization.
+* [utils] Added HaystackTestSuiteRunnerMixin to support protection of main
+  search index from been altered during unit test runs.
+* [tests] Added simple test case for checking signal handlers disconnection
+  on signal processor teardown.
+
 0.0.2 (2016-10-12)
 ++++++++++++++++++
 * [core] Fixed signals.ModelSignalProcessorMixin to properly register signal
