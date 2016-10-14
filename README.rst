@@ -12,7 +12,7 @@ Build status
 ============
 
 .. image:: https://travis-ci.org/noveogroup/nhaystack.svg?branch=master
-    target: https://travis-ci.org/noveogroup/nhaystack.svg
+    :target: https://travis-ci.org/noveogroup/nhaystack
 
 Requirements
 ============
