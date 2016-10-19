@@ -63,7 +63,7 @@ class ModelSignalProcessorMixin(object):
         if model_name in self.INDEXED_MODELS:
             models_signals.post_save.connect(self._handle_save, sender=sender)
             models_signals.post_delete.connect(self._handle_delete, sender=sender)
-        elif model_name in self.SENDER_MAP:
+        if model_name in self.SENDER_MAP:
             models_signals.post_save.connect(self._handle_related_save, sender=sender)
             models_signals.post_delete.connect(self._handle_related_delete, sender=sender)
 
