@@ -3,6 +3,11 @@
 History
 -------
 
+0.0.4 (2016-10-19)
+++++++++++++++++++
+* [core] Fixed elif/if bug for a case when the same model should be registered in both
+  INDEXED_MODELS and SENDER_MAP for a signal processor.
+
 0.0.3 (2016-10-14)
 ++++++++++++++++++
 * [core] Added signals.ModelSignalProcessorMixin.teardown() to be able to
