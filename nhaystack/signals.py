@@ -5,6 +5,7 @@ from __future__ import absolute_import
 from functools import partial
 from inspect import ismethod
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import signals as models_signals
 from django.utils import six
 
@@ -70,9 +71,14 @@ class ModelSignalProcessorMixin(object):
     def _handle_related_action(self, action_handler, sender, instance, **kwargs):
         model_name = get_model_ct(sender)
         for field_name in self.SENDER_MAP[model_name]:
-            rel_instances = self._get_related_instances(instance, field_name)
-            for rel_instance in rel_instances:
-                action_handler(rel_instance.__class__, rel_instance, **kwargs)
+            try:
+                # the related objects may have already been deleted
+                rel_instances = self._get_related_instances(instance, field_name)
+            except ObjectDoesNotExist:
+                pass
+            else:
+                for rel_instance in rel_instances:
+                    action_handler(rel_instance.__class__, rel_instance, **kwargs)
 
     def _get_related_instances(self, instance, field_name):
         rel_instance = getattr(instance, field_name, None)
