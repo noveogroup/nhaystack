@@ -3,6 +3,11 @@
 History
 -------
 
+0.0.5 (2016-12-23)
+++++++++++++++++++
+* [core] Fixed unhandled exception on updating index for an related object that
+  has already been deleted (within a transaction).
+
 0.0.4 (2016-10-19)
 ++++++++++++++++++
 * [core] Fixed elif/if bug for a case when the same model should be registered in both
