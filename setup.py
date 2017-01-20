@@ -25,7 +25,7 @@ tests_requires = [
     'django-haystack==2.4.1',
     'elasticsearch>=1.0.0,<2.0.0',
     'elasticstack==0.4.1',
-    'whoosh>=2.5.0',
+    'whoosh>=2.5.4,<3.0',
 
     'pytest<2.9.0',
     'pytest_django<3.0.0',
