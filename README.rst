@@ -23,6 +23,7 @@ Requirements
 * `Elastic <http://www.elasticsearch.org/>`_: tested against 1.7.0
 * `elasticsearch-py <http://www.elasticsearch.org/>`_: tested against 1.9.0
 * `elasticstack <https://pypi.python.org/pypi/elasticstack/>`_: tested against 0.4.1
+* `Whoosh <http://pypi.python.org/pypi/Whoosh/>`_: tested against 2.7.2
 
 Features and goals
 ==================

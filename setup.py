@@ -22,9 +22,9 @@ setup_requires = [
 ]
 
 tests_requires = [
-    'django-haystack==2.4.1',
-    'elasticsearch>=1.0.0,<2.0.0',
-    'elasticstack==0.4.1',
+    'django-haystack>=2.4.1,<2.5',
+    'elasticsearch>=1.0.0,<2.0',
+    'elasticstack>=0.4.1,<0.5',
     'whoosh>=2.5.4,<3.0',
 
     'pytest<2.9.0',
@@ -58,6 +58,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Utilities',
     ],
     zip_safe=True,

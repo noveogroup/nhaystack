@@ -23,7 +23,6 @@ from haystack.utils import get_model_ct
 from haystack.utils.app_loading import haystack_get_model
 from haystack.utils.loading import import_class
 
-# Bubble up the correct error.
 from whoosh.analysis.analyzers import StemmingAnalyzer
 from whoosh.analysis.filters import CharsetFilter, LowercaseFilter, StopFilter, Filter
 from whoosh.analysis.morph import StemFilter
@@ -42,7 +41,7 @@ class EmptyResults(Exception):
 
 
 def empty_results(decorated_func):
-    @wraps
+    @wraps(decorated_func)
     def wrapper(*args, **kwargs):
         try:
             return decorated_func(*args, **kwargs)
@@ -94,8 +93,18 @@ def LanguageAnalyzer(lang, cachesize=50000, **tokenizer_kwargs):
 class WhooshSearchBackend(whoosh_backend.WhooshSearchBackend):
     def __init__(self, connection_alias, **connection_options):
         super(WhooshSearchBackend, self).__init__(connection_alias, **connection_options)
+        self.opts = connection_options
+
+    def setup(self):
+        """
+        Defers loading until needed.
+        """
+        connection_options = self.opts
         default_analyzer = connection_options.get('DEFAULT_ANALYZER')
         if default_analyzer:
+            if not isinstance(default_analyzer, six.string_types):
+                # assume value is a list as parsed by connection_url.parse()
+                default_analyzer = default_analyzer[-1]
             default_analyzer_class = connection_options.get('DEFAULT_ANALYZER_CLASS')
             if default_analyzer_class:
                 default_analyzer_class = import_class(default_analyzer_class)
@@ -104,6 +113,7 @@ class WhooshSearchBackend(whoosh_backend.WhooshSearchBackend):
             self.analyzer = default_analyzer_class(default_analyzer)
         else:
             self.analyzer = StemmingAnalyzer()
+        super(WhooshSearchBackend, self).setup()
 
     def build_schema(self, fields):
         schema_fields = {
@@ -245,7 +255,6 @@ class WhooshSearchBackend(whoosh_backend.WhooshSearchBackend):
             result_class = SearchResult
 
         facets = {}
-        spelling_suggestion = None
         unified_index = connections[self.connection_alias].get_unified_index()
         indexed_models = unified_index.get_indexed_models()
 
@@ -296,11 +305,7 @@ class WhooshSearchBackend(whoosh_backend.WhooshSearchBackend):
             else:
                 hits -= 1
 
-        if self.include_spelling:
-            if spelling_query:
-                spelling_suggestion = self.create_spelling_suggestion(spelling_query)
-            else:
-                spelling_suggestion = self.create_spelling_suggestion(query_string)
+        spelling_suggestion = self._spelling_suggestion(spelling_query, query_string)
 
         return {
             'results': results,
@@ -377,10 +382,7 @@ class WhooshSearchBackend(whoosh_backend.WhooshSearchBackend):
 
     def _spelling_suggestion(self, spelling_query, query_string):
         if self.include_spelling:
-            if spelling_query:
-                spelling_suggestion = self.create_spelling_suggestion(spelling_query)
-            else:
-                spelling_suggestion = self.create_spelling_suggestion(query_string)
+            spelling_suggestion = self.create_spelling_suggestion(spelling_query or query_string)
             return spelling_suggestion
 
 
