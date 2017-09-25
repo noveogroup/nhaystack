@@ -50,13 +50,12 @@ class ModelSignalProcessorMixin(object):
 
         def is_method_of_self(receiver):
             handler = receiver[1]()
-            return (ismethod(handler) and
-                    getattr(handler, METHOD_SELF, None) != self)
+            return ismethod(handler) and (getattr(handler, METHOD_SELF, None) == self)
 
         for signal in signals:
             with signal.lock:
                 signal.receivers = [receiver for receiver in signal.receivers
-                                    if is_method_of_self(receiver)]
+                                    if not is_method_of_self(receiver)]
                 signal.sender_receivers_cache.clear()
 
     def _post_setup(self, sender, **kwargs):
