@@ -22,11 +22,13 @@ script:
   - tox
 
 deploy:
-  provider: pypi
-  server: https://testpypi.python.org/pypi
-  user: Eugene.Sizikov
-  password:
-    secure: "hDWvlmqWl7yiMvzjPAr7HKkTFsYnABzS2iHa0+mhVW2obhuy0geCkB+abmeUQEkBcASvfF9V0/OfICkkVUC4fumauXnE2vUja6YIK2Xn7b8Fe1yU6n3xuzw2wccJsmbIrinrPXw/s39GqamL8DBboqMzw7rOZuPSJuzAwtumLCTZOw+q2M8S3ehULFY/VmFnB+S6Jsa8Cguqq+lElJa24XQdlOsls2Oocx78To3edXJjueFvEiRhMx0ph8VsIJjEElyfru52WoB6pEGHLLmvyZpurZtEFPMzQEhBI0LkyVEjTWDjkIkmxSoDBi+Y6pZblfsYxcHytNgr6GAQAKXiKysLsvU7b/bpEpOTauZsYHsXE6rNV9ScGIZendoLkDte4heCKXYBjJMG1WCEox7vhBjsLpOMhz5MFbDNQD+Vk4MKSaMe6VdT38aKTRo3sYvHDt5tiJn22BaRVsn6ruB1DfFZOpBSEAQICxDOImFNwIGAYJWghSCUiM0m631DILR12G+UQ/xEljAiBRoz3Z+Z7wd4mGNAIjOBjUmyBxyzjabt8FGAC2tDTZfNRp/xjCeOuM4HsD74K1DR6mo2klKvu3onTX+VBV7M83rbZBfF/B686tYS9kn7qIMH4AMS5DD4Rlujg8zz+8jP9HehGEW08qVvMAWt0AtcdzdJBnWOcSM="
-  on:
-    tag: true
-  distributions: "sdist bdist_wheel"
+  - provider: pypi
+    server: https://testpypi.python.org/pypi
+    user: Eugene.Sizikov
+    password:
+      secure: "hDWvlmqWl7yiMvzjPAr7HKkTFsYnABzS2iHa0+mhVW2obhuy0geCkB+abmeUQEkBcASvfF9V0/OfICkkVUC4fumauXnE2vUja6YIK2Xn7b8Fe1yU6n3xuzw2wccJsmbIrinrPXw/s39GqamL8DBboqMzw7rOZuPSJuzAwtumLCTZOw+q2M8S3ehULFY/VmFnB+S6Jsa8Cguqq+lElJa24XQdlOsls2Oocx78To3edXJjueFvEiRhMx0ph8VsIJjEElyfru52WoB6pEGHLLmvyZpurZtEFPMzQEhBI0LkyVEjTWDjkIkmxSoDBi+Y6pZblfsYxcHytNgr6GAQAKXiKysLsvU7b/bpEpOTauZsYHsXE6rNV9ScGIZendoLkDte4heCKXYBjJMG1WCEox7vhBjsLpOMhz5MFbDNQD+Vk4MKSaMe6VdT38aKTRo3sYvHDt5tiJn22BaRVsn6ruB1DfFZOpBSEAQICxDOImFNwIGAYJWghSCUiM0m631DILR12G+UQ/xEljAiBRoz3Z+Z7wd4mGNAIjOBjUmyBxyzjabt8FGAC2tDTZfNRp/xjCeOuM4HsD74K1DR6mo2klKvu3onTX+VBV7M83rbZBfF/B686tYS9kn7qIMH4AMS5DD4Rlujg8zz+8jP9HehGEW08qVvMAWt0AtcdzdJBnWOcSM="
+    on:
+      branch: develop
+      tag: false
+      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+    distributions: "sdist bdist_wheel"
