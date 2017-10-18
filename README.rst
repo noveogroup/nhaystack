@@ -3,7 +3,7 @@
 nhaystack
 =========
 
-:Version: 0.0.5
+:Version: 0.0.6
 :Author: Noveo Group (http://noveogroup.com/)
 
 Improvements, optimizations and back-ports for Haystack (with Elastic biases).
