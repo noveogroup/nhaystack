@@ -23,12 +23,21 @@ script:
 
 deploy:
   - provider: pypi
-    server: https://testpypi.python.org/pypi
-    user: Eugene.Sizikov
+    server: https://test.pypi.org/legacy/
+    user: "Eugene.Sizikov"
     password:
       secure: "hDWvlmqWl7yiMvzjPAr7HKkTFsYnABzS2iHa0+mhVW2obhuy0geCkB+abmeUQEkBcASvfF9V0/OfICkkVUC4fumauXnE2vUja6YIK2Xn7b8Fe1yU6n3xuzw2wccJsmbIrinrPXw/s39GqamL8DBboqMzw7rOZuPSJuzAwtumLCTZOw+q2M8S3ehULFY/VmFnB+S6Jsa8Cguqq+lElJa24XQdlOsls2Oocx78To3edXJjueFvEiRhMx0ph8VsIJjEElyfru52WoB6pEGHLLmvyZpurZtEFPMzQEhBI0LkyVEjTWDjkIkmxSoDBi+Y6pZblfsYxcHytNgr6GAQAKXiKysLsvU7b/bpEpOTauZsYHsXE6rNV9ScGIZendoLkDte4heCKXYBjJMG1WCEox7vhBjsLpOMhz5MFbDNQD+Vk4MKSaMe6VdT38aKTRo3sYvHDt5tiJn22BaRVsn6ruB1DfFZOpBSEAQICxDOImFNwIGAYJWghSCUiM0m631DILR12G+UQ/xEljAiBRoz3Z+Z7wd4mGNAIjOBjUmyBxyzjabt8FGAC2tDTZfNRp/xjCeOuM4HsD74K1DR6mo2klKvu3onTX+VBV7M83rbZBfF/B686tYS9kn7qIMH4AMS5DD4Rlujg8zz+8jP9HehGEW08qVvMAWt0AtcdzdJBnWOcSM="
     on:
       branch: develop
       tag: false
+      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+    distributions: "sdist bdist_wheel"
+  - provider: pypi
+    server: https://upload.pypi.org/legacy/
+    user: "Eugene.Sizikov"
+    password:
+      secure: "SJTmjZArfXdz3t9+/WvmGhkk8zE4isJf/OIiIl89ktYKtkBIk0fZGZ5+hraDwDLXq5jc+0YLCK097qN/Pgi5OzpILvFfxlXB4Nmkr3vXweoIqCIBZRPqU98WC503bVBnzCuYTpClnw+/3OLoMq0NRZhPyiPqRSQtWgl2as5SuCymEEugsRTBWB78xVPvIyLHQM1tF5rN3VI9mnHh11uNeZQQmi0jLzuzlMhjyTVWVYRjZYUm5I8FFwXsBcpKMaTm62IU+yZsOXQ+JPyQ0T0C4lLDEXxo4hUCivLgtWRSkZNtbN6pt46DrUy/amXowc10wnblpvH92ytYkHUGdwFUCIebJLkLuizLsDoCOBTWcPDb4Wncj7bGbDr+4dbhlXfEkAZmkxZqJtbIGiXevv0Ns5BrwqLseJo1ktKgGtqn/XHGka/CyxSE0au0cY75e+/CpXpOVO9uUtOAGjKhkWhOU7uuZZJBuG4q3pYjjVPVGuWAZpO+anbtFEcxi4pAIn7rgL0Fm6yjowC+o0wD/mzNwf09gv2WXvwLRCJc0arvn12IGr+5ZphZC9uY5niyv3L9AHhLIgs8Ez+LFFBhKcl7rke+0ihlb3p+WngFH/m2jO8B5/e3lVmsU0/wRnUOs3Hip8+/6/Syct/xWxmfap6Vp8DU375/4QqW9m/R3hdFVbQ="
+    on:
+      tag: true
       condition: $TRAVIS_PYTHON_VERSION = "2.7"
     distributions: "sdist bdist_wheel"
