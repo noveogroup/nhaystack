@@ -3,6 +3,11 @@
 History
 -------
 
+0.0.6 (2017-10-18)
+++++++++++++++++++
+* [utils] Fixed ModelSignalProcessorMixin.teardown() removes all registered
+  signal handlers (custom unit test runners).
+
 0.0.5 (2016-12-23)
 ++++++++++++++++++
 * [core] Fixed unhandled exception on updating index for an related object that
