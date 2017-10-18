@@ -3,5 +3,5 @@
 __title__ = 'nhaystack'
 __author__ = 'Noveo Group'
 
-VERSION = (0, 0, 5)  # PEP 386
+VERSION = (0, 0, 6)  # PEP 386
 __version__ = '.'.join(str(x) for x in VERSION)
